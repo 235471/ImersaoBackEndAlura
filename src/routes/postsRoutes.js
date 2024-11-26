@@ -4,7 +4,7 @@ import cors from "cors";
 import { listAllPosts, sendPosts, uploadImagem, updateNewPost, uploadImagens, updateAllFotos } from "../controllers/postsController.js";
 
 const corsOptions = {
-    origin: "http://localhost:8000",
+    origin: "https://imersao-back-end-front-ftbli647x-235471s-projects.vercel.app/",
     optionsSuccessStatus: 200
 };
 
