@@ -86,7 +86,7 @@ export async function uploadImagens(req, res){
 export async function updateNewPost(req, res){
     const id = req.params.id;
     // Extrai o nome da extensão utilizada na imagem
-    const urlimage = `http://localhost:3000/${id}.png`;
+    const urlimage = `https://imersaobackendalura-770467420355.southamerica-east1.run.app/${id}.png`;
 
     try {
         const imgBuffer = fs.readFileSync(`uploads/${id}.png`);
@@ -119,7 +119,7 @@ export async function updateAllFotos(req, res) {
 
             // Gerando Descrição e texto alt
             const descricao = await gerarDescricaoComGemini(imgBuffer);
-            const urlimage = `http://localhost:3000/${id}.png`;
+            const urlimage = `https://imersaobackendalura-770467420355.southamerica-east1.run.app/${id}.png`;
 
             const fotos = {
                 descricao: descricao,
