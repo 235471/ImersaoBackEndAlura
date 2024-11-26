@@ -112,19 +112,21 @@ export async function updateAllFotos(req, res) {
 
     try {
         for (const imagem of todasAsImagens) {
-        
+            const desc = "Na lingua PT-BR gere uma descrição para a foto";
+            const alt = "Na lingua PT-BR gere uma alt para acessibilidade";
             const id = imagem._id.toHexString();
             // Obter o buffer da imagem (supondo que você tenha uma função para isso)
             const imgBuffer = fs.readFileSync(`uploads/${id}.png`);
 
             // Gerando Descrição e texto alt
-            const descricao = await gerarDescricaoComGemini(imgBuffer);
+            const descricao = await gerarDescricaoComGemini(imgBuffer, desc);
+            const altdesc   = await gerarDescricaoComGemini(imgBuffer, alt);
             const urlimage = `https://imersaobackendalura-770467420355.southamerica-east1.run.app/${id}.png`;
 
             const fotos = {
                 descricao: descricao,
                 imgurl: urlimage,
-                alt: req.body.alt
+                alt: altdesc
             }
             const updatePost = await updateSinglePost(id, fotos, "fotos");
             updateFotos.push(updatePost);
