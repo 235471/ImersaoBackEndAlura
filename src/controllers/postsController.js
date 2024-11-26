@@ -112,15 +112,24 @@ export async function updateAllFotos(req, res) {
 
     try {
         for (const imagem of todasAsImagens) {
-            const desc = "Na lingua PT-BR gere uma descrição para a foto";
-            const alt = "Na lingua PT-BR gere uma alt para acessibilidade";
+            const desc = "Na lingua PT-BR gere apenas uma e breve descrição para a foto";
+            const alt = "Na lingua PT-BR gere apenas uma e breve alt desc para acessibilidade";
             const id = imagem._id.toHexString();
+            let descricao = imagem.descricao;
+            let altdesc = imagem.alt
             // Obter o buffer da imagem (supondo que você tenha uma função para isso)
             const imgBuffer = fs.readFileSync(`uploads/${id}.png`);
-
+            console.warn('brother do you even reach?');
             // Gerando Descrição e texto alt
-            const descricao = await gerarDescricaoComGemini(imgBuffer, desc);
-            const altdesc   = await gerarDescricaoComGemini(imgBuffer, alt);
+            if(descricao === "" || descricao === null) {
+                console.warn("aqui");
+                descricao = await gerarDescricaoComGemini(imgBuffer, desc);
+            }
+            
+            if(altdesc === "" || altdesc === null) {
+                console.warn("aqui2");
+                altdesc   = await gerarDescricaoComGemini(imgBuffer, alt);
+            }
             const urlimage = `https://imersaobackendalura-770467420355.southamerica-east1.run.app/${id}.png`;
 
             const fotos = {
@@ -128,8 +137,10 @@ export async function updateAllFotos(req, res) {
                 imgurl: urlimage,
                 alt: altdesc
             }
+    
             const updatePost = await updateSinglePost(id, fotos, "fotos");
             updateFotos.push(updatePost);
+            console.warn(`updated ${id}`);
             
         } 
         res.status(200).json(updateFotos);
