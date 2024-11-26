@@ -86,7 +86,7 @@ export async function uploadImagens(req, res){
 export async function updateNewPost(req, res){
     const id = req.params.id;
     // Extrai o nome da extensão utilizada na imagem
-    const urlimage = `https://imersaobackendalura-770467420355.southamerica-east1.run.app/${id}.png`;
+    const urlimage = `ls/${id}.png`;
 
     try {
         const imgBuffer = fs.readFileSync(`uploads/${id}.png`);

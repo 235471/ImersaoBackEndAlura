@@ -4,7 +4,10 @@ import cors from "cors";
 import { listAllPosts, sendPosts, uploadImagem, updateNewPost, uploadImagens, updateAllFotos } from "../controllers/postsController.js";
 
 const corsOptions = {
-    origin: "https://imersao-back-end-front-ftbli647x-235471s-projects.vercel.app/",
+    origin: "https://imersao-back-end-front-cscs8jxdj-235471s-projects.vercel.app",
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
     optionsSuccessStatus: 200
 };
 
