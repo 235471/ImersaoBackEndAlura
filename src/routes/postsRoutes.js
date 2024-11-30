@@ -4,7 +4,7 @@ import cors from "cors";
 import { listAllPosts, sendPosts, uploadImagem, updateNewPost, uploadImagens, updateAllFotos } from "../controllers/postsController.js";
 
 const corsOptions = {
-    origin: ["https://imersao-back-end-front-cscs8jxdj-235471s-projects.vercel.app", "https://imersao-back-end-front-git-main-235471s-projects.vercel.app"],
+    origin: ["https://instabytes-git-main-235471s-projects.vercel.app", "https://instabytes-235471s-projects.vercel.app", "https://instabytes-steel.vercel.app"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
